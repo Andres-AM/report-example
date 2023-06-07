@@ -1,0 +1,129 @@
+
+---
+header-includes:
+- \renewcommand{\familydefault}{\sfdefault}
+- \usepackage{fancyhdr}
+- \usepackage{lastpage}
+- \usepackage{datetime}
+- \definecolor{blue_AA}{rgb}{0.23,0.30,0.68}
+- \usepackage{pdflscape}
+- \newcommand{\blandscape}{\begin{landscape}}
+- \newcommand{\elandscape}{\end{landscape}}
+- \pagestyle{fancy}
+- \fancyfoot[L]{\color{blue_AA}{\today, \currenttime}}
+- \fancyfoot[C]{\color{blue_AA}{Page \thepage\ / \pageref{LastPage}}}
+- \fancyfoot[R]{\color{blue_AA}{Confidential}}
+- \fancyhead[L]{\color{blue_AA}{\textbf{Test for Github} \\\Large{\textit{Report Title - Project Title}}}}
+- \fancyhead[R]{\includegraphics[width=1.5cm]{./logo.png}}
+- \fancypagestyle{plain}{\pagestyle{fancy}}
+- \renewcommand{\footrulewidth}{0.5pt}
+- \geometry{a4paper, left=20mm, right=20mm, headheight=3cm, top=3cm, bottom=3 cm,footskip=2cm}
+output:
+  pdf_document:
+    fig_caption: yes
+    number_sections: yes
+
+params:
+  Version: 1
+classoption: table
+---
+
+\begin{center}
+\end{center}
+
+\vspace{6\baselineskip}
+
+\definecolor{lightgray}{gray}{0.9}
+\newcolumntype{g}{>{\columncolor{lightgray}}c}
+
+\begin{center}
+\begin{tabular}{|g|l|}
+\hline
+\textcolor{blue_AA}{Project name} & Github Project \\
+\textcolor{blue_AA}{\textit{ }} &  \\\hline
+\textcolor{blue_AA}{R Software Version } & `r R.Version()$version.string`\\
+\textcolor{blue_AA}{\textit{ }} &  \\\hline
+\textcolor{blue_AA}{Version}  & V1 \\
+\hspace{5cm} &\hspace{10cm} \\\hline
+\textcolor{blue_AA}{Change description } & Initial redaction \\
+\textcolor{blue_AA}{ } & \\ \hline
+\end{tabular}
+
+\vspace{4\baselineskip}
+
+\begin{tabular}{|g|c|c|c|c|}
+\hline
+\rowcolor{lightgray} 
+&\textcolor{blue_AA}{ \textit{First Name}}  &\textcolor{blue_AA}{ \textit{Last Name } }   &\textcolor{blue_AA}{ Date }   \\
+\rowcolor{lightgray} &  & &  \\\hline
+\textcolor{blue_AA}{Written by }& Andrés  & Acuña Marroquín & \today  \\ 
+\textcolor{blue_AA} {\textit{}} &  &   & 
+\\\hline
+\end{tabular}
+
+\vspace{4\baselineskip}
+
+\end{center}
+
+\newpage
+\centering
+\raggedright
+\tableofcontents  
+ 
+ 
+# Definitions 
+
+Definitions : 
+
++ **The standard deviation:**
+
+The standard deviation quantifies the variation within a set of measurements.
+Must not be confused with the standard error. The standard deviation is the most used.
+
+
+$$ \Large  s = \sqrt{\frac{\sum_{i= 1}^n (x - \bar{x})^2 }{ n - 1 }}   $$
+
++ **The standard error:**
+
+The  standard error quantifies the variation (standard deviation) of an estimated parameter (or statistic) from a sampling distribution. This is the distribution of the means.  
+Can be estimated with a single set of measurments.
+
+$$ \Large Standard\;Error = SE = \frac{s}{\sqrt{n}} $$
+
++ **The coefficient of variation:** 
+
+The coefficient of variation, also known as relative standard deviation, is a standardized measure of dispersion of a probability distribution.
+
+The coefficient of variation in absolute value : 
+
+$$ CV = \frac{\sigma}{\overline{x}} $$
+
++ **The coefficient of variation in percentage :**
+
+$$ CV_{\%} = \frac{\sigma}{\overline{x}}*100 $$
+
++ **R programming language**: R is a programming language for statistical computing and graphics supported by the R Core Team and the R Foundation for Statistical Computing.
+
+\newpage
+\newpage
+# Introduction
+## Purpose
+
+The purpose of this document is to:  
+
+
+```{r}
+source("libraries.R");source("FUN.R")
+
+```
+
+
+\newpage
+
+# Session Info
+
+```{r,echo=T}
+
+sessionInfo()
+
+```
