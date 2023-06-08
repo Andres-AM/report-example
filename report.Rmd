@@ -90,10 +90,9 @@ $$ CV_{\%} = \frac{\sigma}{\overline{x}}*100 $$
 
 ```{r, echo=FALSE, message=FALSE}
 
-source("libraries.R");source("FUN.R")
+source("libraries.R")
 
 ```
- 
  
 \newpage
 
