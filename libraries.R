@@ -3,7 +3,7 @@
 library(tidyverse)
 library(lubridate) 
 library(modelr) 
-library(kableExtra)
+# library(kableExtra)
 library(plotly)
 library(splines)
 library(knitr) 

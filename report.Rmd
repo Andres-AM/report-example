@@ -5,15 +5,13 @@ header-includes:
 - \usepackage{fancyhdr}
 - \usepackage{lastpage}
 - \usepackage{datetime}
-- \definecolor{blue_AA}{rgb}{0.23,0.30,0.68}
-- \usepackage{pdflscape}
-- \newcommand{\blandscape}{\begin{landscape}}
-- \newcommand{\elandscape}{\end{landscape}}
+- \usepackage{xcolor}
+- \definecolor{red_AA}{RGB}{255,80,80}
 - \pagestyle{fancy}
-- \fancyfoot[L]{\color{blue_AA}{\today, \currenttime}}
-- \fancyfoot[C]{\color{blue_AA}{Page \thepage\ / \pageref{LastPage}}}
-- \fancyfoot[R]{\color{blue_AA}{Confidential}}
-- \fancyhead[L]{\color{blue_AA}{\textbf{Test for Github} \\\Large{\textit{Report Title - Project Title}}}}
+- \fancyfoot[L]{\color{red_AA}{\today, \currenttime}}
+- \fancyfoot[C]{\color{red_AA}{Page \thepage\ / \pageref{LastPage}}}
+- \fancyfoot[R]{\color{red_AA}{Confidential}}
+- \fancyhead[L]{\color{red_AA}{\textbf{Test for Github} \\\Large{\textit{Report Title - Project Title}}}}
 - \fancyhead[R]{\includegraphics[width=1.5cm]{./logo.png}}
 - \fancypagestyle{plain}{\pagestyle{fancy}}
 - \renewcommand{\footrulewidth}{0.5pt}
@@ -33,31 +31,31 @@ classoption: table
 
 \vspace{6\baselineskip}
 
-\definecolor{lightgray}{gray}{0.9}
-\newcolumntype{g}{>{\columncolor{lightgray}}c}
+\definecolor{lightblue}{RGB}{115,220,255}
+\newcolumntype{g}{>{\columncolor{lightblue}}c}
 
 \begin{center}
 \begin{tabular}{|g|l|}
 \hline
-\textcolor{blue_AA}{Project name} & Github Project \\
-\textcolor{blue_AA}{\textit{ }} &  \\\hline
-\textcolor{blue_AA}{R Software Version } & `r R.Version()$version.string`\\
-\textcolor{blue_AA}{\textit{ }} &  \\\hline
-\textcolor{blue_AA}{Version}  & V1 \\
+\textcolor{red_AA}{Project name} & Github Project \\
+\textcolor{red_AA}{\textit{ }} &  \\\hline
+\textcolor{red_AA}{R Software Version } & `r R.Version()$version.string` \\
+\textcolor{red_AA}{\textit{ }} &  \\\hline
+\textcolor{red_AA}{Version}  & V1 \\
 \hspace{5cm} &\hspace{10cm} \\\hline
-\textcolor{blue_AA}{Change description } & Initial redaction \\
-\textcolor{blue_AA}{ } & \\ \hline
+\textcolor{red_AA}{Change description } & Initial redaction \\
+\textcolor{red_AA}{ } & \\ \hline
 \end{tabular}
 
 \vspace{4\baselineskip}
 
 \begin{tabular}{|g|c|c|c|c|}
 \hline
-\rowcolor{lightgray} 
-&\textcolor{blue_AA}{ \textit{First Name}}  &\textcolor{blue_AA}{ \textit{Last Name } }   &\textcolor{blue_AA}{ Date }   \\
-\rowcolor{lightgray} &  & &  \\\hline
-\textcolor{blue_AA}{Written by }& Andrés  & Acuña Marroquín & \today  \\ 
-\textcolor{blue_AA} {\textit{}} &  &   & 
+\rowcolor{lightblue} 
+&\textcolor{red_AA}{ \textit{First Name}}  &\textcolor{red_AA}{\textit{Last Name}}   &\textcolor{red_AA}{Date} \\
+\rowcolor{lightblue} &  & &  \\\hline
+\textcolor{red_AA}{Written by }& Andrés & Acuña Marroquín & \today  \\ 
+\textcolor{red_AA} {\textit{}} &  &   & 
 \\\hline
 \end{tabular}
 
@@ -69,32 +67,20 @@ classoption: table
 \centering
 \raggedright
 \tableofcontents  
- 
- 
+
 # Definitions 
 
-Definitions : 
-
-+ **The standard deviation:**
-
-The standard deviation quantifies the variation within a set of measurements.
++ **The standard deviation:** The standard deviation quantifies the variation within a set of measurements.
 Must not be confused with the standard error. The standard deviation is the most used.
 
 
 $$ \Large  s = \sqrt{\frac{\sum_{i= 1}^n (x - \bar{x})^2 }{ n - 1 }}   $$
 
-+ **The standard error:**
-
-The  standard error quantifies the variation (standard deviation) of an estimated parameter (or statistic) from a sampling distribution. This is the distribution of the means.  
-Can be estimated with a single set of measurments.
++ **The standard error:** The  standard error quantifies the variation (standard deviation) of an estimated parameter (or statistic) from a sampling distribution. This is the distribution of the means. Can be estimated with a single set of measurments.
 
 $$ \Large Standard\;Error = SE = \frac{s}{\sqrt{n}} $$
 
-+ **The coefficient of variation:** 
-
-The coefficient of variation, also known as relative standard deviation, is a standardized measure of dispersion of a probability distribution.
-
-The coefficient of variation in absolute value : 
++ **The coefficient of variation:**  The coefficient of variation, also known as relative standard deviation, is a standardized measure of dispersion of a probability distribution. The coefficient of variation in absolute value : 
 
 $$ CV = \frac{\sigma}{\overline{x}} $$
 
@@ -102,18 +88,47 @@ $$ CV = \frac{\sigma}{\overline{x}} $$
 
 $$ CV_{\%} = \frac{\sigma}{\overline{x}}*100 $$
 
-+ **R programming language**: R is a programming language for statistical computing and graphics supported by the R Core Team and the R Foundation for Statistical Computing.
+```{r, echo=FALSE, message=FALSE}
 
+source("libraries.R");source("FUN.R")
+
+```
+ 
+ 
 \newpage
-\newpage
-# Introduction
-## Purpose
 
-The purpose of this document is to:  
+# Data presentation
+## ToothGrowth
 
+Descriptive statistics for the ToothGrowth data set included in R. 
+
+```{r,results='asis', echo=FALSE }
+
+## Data overview using a box plot, grouping by the categorical and ordinal variables ("supp" and "dose") the continuous variable "len"
+ToothGrowth %>% 
+  ggplot(aes(as.factor(dose), len,color = as.factor(dose))) +
+  geom_boxplot(alpha = 0.3) + 
+  geom_jitter(width = 0.2,height = 0) +
+  facet_grid(~supp)+
+  ylab("Tooth length") + xlab("Dose in milligrams/day") + theme(legend.position = "none")+
+  labs(title = "The Effect of Vitamin C on Tooth Growth in Guinea Pigs", subtitle = "Supplement type (VC or OJ)") 
+  
+
+## Data overview using a table grouped as the box plot, giving some descriptive statistics.
+ToothGrowth %>% 
+  group_by(dose,supp) %>% 
+  summarise(n = n(),mean= mean(len), sd = sd(len),median = median(len),min = min(len), max = max(len)) %>% 
+  kable(caption = "Data Overview for the ToothGrowth data set", digits = 2,align = "c", booktabs = T,linesep = "")  
+
+```
+
+\newpage 
+
+## Iris 
+
+Descriptive statistics for the Iris data set included in R. 
 
 ```{r}
-source("libraries.R");source("FUN.R")
 
 ```
 
