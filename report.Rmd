@@ -6,7 +6,7 @@ header-includes:
 - \usepackage{lastpage}
 - \usepackage{datetime}
 - \usepackage{xcolor}
-- \definecolor{red_AA}{RGB}{255,80,80}
+- \definecolor{red_AA}{RGB}{255,120,120}
 - \pagestyle{fancy}
 - \fancyfoot[L]{\color{red_AA}{\today, \currenttime}}
 - \fancyfoot[C]{\color{red_AA}{Page \thepage\ / \pageref{LastPage}}}
@@ -31,31 +31,30 @@ classoption: table
 
 \vspace{6\baselineskip}
 
-\definecolor{lightblue}{RGB}{115,220,255}
-\newcolumntype{g}{>{\columncolor{lightblue}}c}
+\newcolumntype{g}{>{\columncolor{red_AA}}c}
 
 \begin{center}
 \begin{tabular}{|g|l|}
 \hline
-\textcolor{red_AA}{Project name} & Github Project \\
-\textcolor{red_AA}{\textit{ }} &  \\\hline
-\textcolor{red_AA}{R Software Version } & `r R.Version()$version.string` \\
-\textcolor{red_AA}{\textit{ }} &  \\\hline
-\textcolor{red_AA}{Version}  & V1 \\
+\textcolor{black}{Project name} & Github Project \\
+\textcolor{black}{\textit{ }} &  \\\hline
+\textcolor{black}{R Software Version } & `r R.Version()$version.string` \\
+\textcolor{black}{\textit{ }} &  \\\hline
+\textcolor{black}{Version}  & V1 \\
 \hspace{5cm} &\hspace{10cm} \\\hline
-\textcolor{red_AA}{Change description } & Initial redaction \\
-\textcolor{red_AA}{ } & \\ \hline
+\textcolor{black}{Change description } & Initial redaction \\
+\textcolor{black}{ } & \\ \hline
 \end{tabular}
 
 \vspace{4\baselineskip}
 
 \begin{tabular}{|g|c|c|c|c|}
 \hline
-\rowcolor{lightblue} 
-&\textcolor{red_AA}{ \textit{First Name}}  &\textcolor{red_AA}{\textit{Last Name}}   &\textcolor{red_AA}{Date} \\
-\rowcolor{lightblue} &  & &  \\\hline
-\textcolor{red_AA}{Written by }& Andrés & Acuña Marroquín & \today  \\ 
-\textcolor{red_AA} {\textit{}} &  &   & 
+\rowcolor{red_AA} 
+&\textcolor{black}{ \textit{First Name}}  &\textcolor{black}{\textit{Last Name}}   &\textcolor{black}{Date} \\
+\rowcolor{red_AA} &  & &  \\\hline
+\textcolor{black}{Written by }& Andrés & Acuña Marroquín & \today  \\ 
+\textcolor{black} {\textit{}} &  &   & 
 \\\hline
 \end{tabular}
 
@@ -128,6 +127,15 @@ ToothGrowth %>%
 Descriptive statistics for the Iris data set included in R. 
 
 ```{r}
+
+# Create scatterplot with multiple layers and facetting
+ggplot(mtcars, aes(x = mpg, y = wt)) +
+  geom_point(aes(color = factor(cyl)), size = 4, alpha = 0.8) +
+  geom_smooth(method = "lm", se = FALSE, linetype = "dashed", color = "black") +
+  facet_grid(vs ~ am) +
+  labs(x = "Miles per Gallon", y = "Weight") +
+  scale_color_discrete(name = "Cylinders") +
+  theme_bw()
 
 ```
 
