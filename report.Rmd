@@ -122,22 +122,39 @@ ToothGrowth %>%
 
 \newpage 
 
-## Iris 
+## Paired data comparison 
 
-Descriptive statistics for the Iris data set included in R. 
+By comparing two measurement methods and calculating the measurement bias, we use a difference plot to visually represent the disparity between the two groups.
 
 ```{r}
-
-# Create scatterplot with multiple layers and facetting
-ggplot(mtcars, aes(x = mpg, y = wt)) +
-  geom_point(aes(color = factor(cyl)), size = 4, alpha = 0.8) +
-  geom_smooth(method = "lm", se = FALSE, linetype = "dashed", color = "black") +
-  facet_grid(vs ~ am) +
-  labs(x = "Miles per Gallon", y = "Weight") +
-  scale_color_discrete(name = "Cylinders") +
-  theme_bw()
+## Creating a data set with two groups and comparing the difference between two groups
+data <- tibble::tibble(group1 = seq(1:100) + rnorm(n = 100,mean = 10, sd = 2),
+                       group2 = group1 + rnorm(n = 100,mean = 1, sd = 2))
 
 ```
+
+
+
+```{r,echo=FALSE}
+
+## Importing function for calculation of bias
+source("FUN.R")
+
+## Creating a data set with two groups and comparing the difference between two groups
+data <- tibble::tibble(group1 = seq(1:100) + rnorm(n = 100,mean = 10, sd = 2),
+                       group2 = group1 + rnorm(n = 100,mean = 1, sd = 2))
+
+results <- diff_plot(df = data,group1 = "group1",group2 = "group2",n_bins = 10,n_breaks = 15)
+
+
+results$dplot
+
+results$table %>% 
+  kable(caption = "Data overview", align = "c")
+
+```
+
+The table above is utilized to showcase the essential values derived from the plots.
 
 
 \newpage
