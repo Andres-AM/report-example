@@ -10,9 +10,9 @@ header-includes:
 - \pagestyle{fancy}
 - \fancyfoot[L]{\color{red_AA}{\today, \currenttime}}
 - \fancyfoot[C]{\color{red_AA}{Page \thepage\ / \pageref{LastPage}}}
-- \fancyfoot[R]{\color{red_AA}{Confidential}}
+- \fancyfoot[R]{\color{red_AA}{}}
 - \fancyhead[L]{\color{red_AA}{\textbf{Test for Github} \\\Large{\textit{Report Title - Project Title}}}}
-- \fancyhead[R]{\includegraphics[width=1.5cm]{./logo.png}}
+- \fancyhead[R]{\includegraphics[width=1.5cm]{./others/logo.png}}
 - \fancypagestyle{plain}{\pagestyle{fancy}}
 - \renewcommand{\footrulewidth}{0.5pt}
 - \geometry{a4paper, left=20mm, right=20mm, headheight=3cm, top=3cm, bottom=3 cm,footskip=2cm}
