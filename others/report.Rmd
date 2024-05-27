@@ -16,6 +16,7 @@ header-includes:
 - \fancypagestyle{plain}{\pagestyle{fancy}}
 - \renewcommand{\footrulewidth}{0.5pt}
 - \geometry{a4paper, left=20mm, right=20mm, headheight=3cm, top=3cm, bottom=3 cm,footskip=2cm}
+
 output:
   pdf_document:
     fig_caption: yes
