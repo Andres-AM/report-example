@@ -2,6 +2,7 @@
 ## All packages 
 library(tidyverse)
 library(knitr) 
+library(modeldata)
 
 ## Other settings 
 theme_set(theme_bw())
